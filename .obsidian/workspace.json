@@ -4,22 +4,6 @@
     "type": "split",
     "children": [
       {
-        "id": "dd9679d27d3594cf",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "226d0c1b57599433",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "Nouvel onglet"
-            }
-          }
-        ]
-      },
-      {
         "id": "ed328621abcb2beb",
         "type": "tabs",
         "children": [
@@ -27,10 +11,14 @@
             "id": "5fba8a71fdf772c0",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Vue graphique"
+              "type": "markdown",
+              "state": {
+                "file": "03-Resources/Studio-Playbook.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Studio-Playbook"
             }
           }
         ]
@@ -199,7 +187,20 @@
   },
   "active": "5fba8a71fdf772c0",
   "lastOpenFiles": [
+    "03-Resources/Studio/AI-Solo-Product-Studio-Playbook.md",
+    "03-Resources/Studio-Playbook.md",
+    "01-Projects/Studio-Workflow/Roadmap.md",
+    "01-Projects/Fountain-DS/Roadmap.md",
     "01-Projects/Fountain-DS/CLAUDE.md",
+    "01-Projects/Fountain-DS/Changelog.md",
+    "04-Decision-Log/2026-03-22-Fountain-DS-session-memory-strategy.md",
+    "01-Projects/Studio-Workflow/CLAUDE.md",
+    "01-Projects/Studio-Workflow/Changelog.md",
+    "03-Resources/Studio",
+    "01-Projects/Studio-Workflow",
+    "01-Projects/Fountain-DS/PRD.md",
+    "_Templates/session-end.md",
+    "_Templates/session-start.md",
     "01-Projects/Fountain-DS",
     "_Templates/Decision.md.md",
     "_Templates/Project.md",
@@ -212,7 +213,6 @@
     "03-Resources",
     "02-Areas",
     "01-Projects",
-    "00-Inbox",
     "Bienvenue.md"
   ]
 }
