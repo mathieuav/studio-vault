@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "03-Resources/Studio-Playbook.md",
+                "file": "GUIDELINES.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Studio-Playbook"
+              "title": "GUIDELINES"
             }
           }
         ]
@@ -187,8 +187,9 @@
   },
   "active": "5fba8a71fdf772c0",
   "lastOpenFiles": [
-    "03-Resources/Studio/AI-Solo-Product-Studio-Playbook.md",
     "03-Resources/Studio-Playbook.md",
+    "GUIDELINES.md",
+    "03-Resources/Studio/AI-Solo-Product-Studio-Playbook.md",
     "01-Projects/Studio-Workflow/Roadmap.md",
     "01-Projects/Fountain-DS/Roadmap.md",
     "01-Projects/Fountain-DS/CLAUDE.md",
