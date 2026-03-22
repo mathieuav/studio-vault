@@ -11,14 +11,10 @@
             "id": "226d0c1b57599433",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "_Templates/Decision.md.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Decision.md"
+              "title": "Nouvel onglet"
             }
           }
         ]
@@ -201,10 +197,14 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "226d0c1b57599433",
+  "active": "5fba8a71fdf772c0",
   "lastOpenFiles": [
-    "_Templates/Project.md.md",
+    "01-Projects/Fountain-DS/CLAUDE.md",
+    "01-Projects/Fountain-DS",
     "_Templates/Decision.md.md",
+    "_Templates/Project.md",
+    "_Templates/Decision.md",
+    "_Templates/Project.md.md",
     "_Daily",
     "_Bases",
     "_Templates",
