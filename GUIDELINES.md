@@ -1,140 +1,119 @@
 # GUIDELINES.md — Studio Mathieu
-*Source de vérité transversale. S'applique à tous les projets.*
-*Claude lit ce fichier en priorité avant tout CLAUDE.md de projet.*
+*Principes fondamentaux issus de la recherche sur 400+ sources.*
+*Ces principes guident toutes les décisions, tous les projets.*
 
 ---
 
-## 0. Principes fondamentaux
+## 1. Tu es architecte d'intention, pas codeur
 
-Ces principes ne sont jamais négociés, quel que soit le projet :
+Ton job n'est pas d'écrire du code — c'est de décrire le problème avec précision.
+La qualité de ta description détermine la qualité de ce qui est généré.
 
-- **KISS** — la solution la plus simple qui fonctionne. Toujours.
-- **YAGNI** — ne pas construire ce qui n'est pas demandé aujourd'hui.
-- **Lean** — valider avant de construire. Prototyper avant de coder.
-- **Une tâche = une conversation** — ne jamais mélanger les sujets.
-- **La mémoire est dans les fichiers** — jamais dans le contexte de chat.
-- **Pas de décision silencieuse** — Claude signale tout choix technique non évident.
+> "The skill isn't coding. It's describing friction." — Kris Puckett, Stripe
 
----
-
-## 1. Règles de code — non négociables
-
-### Tokens et valeurs
-- Zéro valeur brute dans le code (#ffffff, 16px, 8px...)
-- Toujours utiliser les tokens CSS définis dans le CLAUDE.md du projet
-- Si un token manque → le signaler, ne pas inventer
-
-### Composants
-- Un composant = un fichier
-- Toujours typer les props (TypeScript)
-- Nommer selon le design system Figma (data-name des layers)
-- Variantes et états = props explicites, jamais de CSS conditionnel opaque
-
-### Taille et complexité
-- Fonctions : 30 lignes maximum
-- Composants : 100 lignes maximum
-- Si ça dépasse → découper, signaler à Mathieu
-
-### Nommage
-- Semantic et greppable : chaque concept a UN nom dans tout le projet
-- Pas d'abréviations non évidentes
-- Sentence case pour les labels UI, PascalCase pour les composants
+En pratique :
+- Avant de demander quoi que ce soit à Claude → formuler le problème en 1 phrase claire
+- Si tu ne peux pas expliquer ce que tu veux en termes simples → tu n'es pas prêt à builder
+- Le brief est le vrai travail de design
 
 ---
 
-## 2. Workflow de session
+## 2. La dérive visuelle est l'ennemi numéro un
 
-### Ouverture
-1. Lire GUIDELINES.md (ce fichier)
-2. Lire le CLAUDE.md du projet concerné
-3. Résumer en 3 phrases : où on en est, ce qui est bloqué, ce qu'on fait aujourd'hui
+Sans contraintes explicites, l'AI prend 200-300 micro-décisions visuelles par session.
+À la session 10, ton produit ressemble à 3 produits différents.
 
-### Pendant la session
-- Maximum 1 composant ou 1 feature par conversation
-- Si une décision importante est prise → le noter immédiatement
-- Si quelque chose semble incohérent avec le design system → stopper et signaler
+La solution : le design system comme **ensemble fermé**.
+L'AI choisit dans une liste définie — elle n'invente jamais.
 
-### Fermeture
-1. Mettre à jour Changelog.md
-2. Mettre à jour Roadmap.md
-3. Mettre à jour CLAUDE.md si nouveaux tokens/patterns découverts
-4. Créer un fichier Decision-Log si décision importante prise
+En pratique :
+- Zéro décision visuelle laissée à Claude sans token correspondant dans Figma
+- Si un token manque dans le design system → le créer dans Figma d'abord, pas dans le code
+- Figma est toujours en avance sur le code, jamais l'inverse
 
 ---
 
-## 3. Gestion du design system
+## 3. Prototyper coûte zéro — la recherche d'abord est obsolète
 
-### Source de vérité
-- Figma = source de vérité visuelle
-- CLAUDE.md du projet = source de vérité technique
-- Ces deux fichiers doivent toujours être alignés
+La logique classique "front-load la recherche avant de builder" ne tient plus.
+Avec l'AI, un prototype fonctionnel se génère en minutes.
 
-### Quand lire Figma
-- Avant chaque nouveau composant → lire le frame via Figma MCP
-- En cas de doute sur un token ou une valeur → vérifier dans Figma
-- Ne jamais supposer une valeur, toujours vérifier
+> "En 2005, faire les choses était cher. Cette logique est cassée." — Jeff Humble
 
-### Pipeline token
-Figma Variables → CLAUDE.md → tokens.css → composants
-Aucun saut dans cette chaîne n'est autorisé.
+En pratique :
+- Valider avec un prototype fonctionnel, pas des wireframes statiques
+- Montrer à 10 utilisateurs cibles — 8/10 voient la valeur = validé
+- Thin slices > broad MVPs : une expérience complète pour UN cas précis
 
 ---
 
-## 4. Gestion de la codebase (pour non-codeur)
+## 4. La mémoire est dans les fichiers, jamais dans l'AI
 
-### Ce que Claude doit toujours faire
-- Expliquer en 1 phrase ce que chaque composant fait
-- Signaler si une modification risque de casser autre chose
-- Ne jamais supprimer du code existant sans confirmation explicite
-- Ne jamais ajouter de dépendance sans confirmation explicite
+L'AI n'a aucune mémoire entre les sessions. Ce qui n'est pas écrit est perdu.
+Chaque décision, chaque pattern, chaque exception doit être documenté.
 
-### Ce que Claude ne fait jamais sans confirmation
-- Supprimer des fichiers
-- Modifier la structure de dossiers
-- Changer le nom d'un token ou composant existant
-- Ajouter une librairie externe
-
-### Audit mensuel
-Une fois par mois, lancer : "Audite la codebase [PROJET] pour :
-duplications, patterns incohérents, valeurs brutes, composants inutilisés"
+En pratique :
+- Toute décision importante → Decision-Log immédiatement
+- Tout nouveau pattern découvert → CLAUDE.md mis à jour en fin de session
+- Si Claude doit re-apprendre quelque chose → c'est qu'on a raté une documentation
 
 ---
 
-## 5. Contrôle qualité
+## 5. Une conversation = une tâche atomique
 
-### Avant de livrer un composant
-- [ ] Tous les tokens CSS utilisés (zéro valeur brute)
-- [ ] Toutes les variantes du design system couvertes
-- [ ] Props TypeScript typées
-- [ ] États interactifs fonctionnels (hover, focus, disabled)
-- [ ] Nommage cohérent avec Figma
+Les designers qui réussissent avec l'AI travaillent en sessions courtes et ciblées.
+Les conversations longues et multi-sujets produisent de l'incohérence.
 
-### Signaux d'alerte à surveiller
-- Claude génère du code avec des valeurs brutes → arrêter
-- Un composant dépasse 100 lignes → découper
-- La même valeur apparaît à plusieurs endroits → créer un token
-- Claude ne sait pas d'où vient une valeur → vérifier dans Figma
+En pratique :
+- Définir la tâche avant d'ouvrir une conversation
+- Si le sujet dérive → nouvelle conversation
+- Fenêtre de tokens : rester sous 60%, le contexte vient des fichiers pas du chat
 
 ---
 
-## 6. Gestion des projets dans Obsidian
+## 6. Figma est la source de vérité universelle
 
-### Structure obligatoire par projet
-```
-01-Projects/[NOM]/
-  CLAUDE.md          ← contexte technique, tokens, stack
-  PRD.md             ← problème, objectif, périmètre
-  Roadmap.md         ← todo / in-progress / done / blocked
-  Changelog.md       ← entrées datées de chaque session
-```
+Ce qui existe dans Figma doit exister identiquement dans le code.
+Ce qui existe dans le code doit avoir une origine dans Figma.
 
-### Decision-Log
-- Un fichier par décision importante
-- Format : 04-Decision-Log/YYYY-MM-DD-[PROJET]-[sujet].md
-- Frontmatter : type, project, date, status, context, decision, consequences
-- Toute décision qui change la direction d'un projet doit être loguée
+En pratique :
+- Toujours lire le frame Figma via MCP avant de générer un composant
+- Nommer les layers Figma de façon sémantique — c'est le nom du composant
+- Un composant non documenté dans Figma n'existe pas encore
 
-### Tokens de fenêtre
-- Garder les conversations sous 60% de la fenêtre de tokens
-- Une conversation = une tâche atomique
-- Le CLAUDE.md charge le contexte, pas l'historique de chat
+---
+
+## 7. Comprendre suffisamment, pas tout comprendre
+
+Tu n'as pas besoin de savoir coder pour contrôler une codebase.
+Tu as besoin de savoir poser les bonnes questions et détecter les signaux d'alerte.
+
+Signaux d'alerte à reconnaître :
+- Claude génère sans expliquer → demander une explication en 1 phrase
+- Un fichier dépasse 100 lignes → questionner la complexité
+- La même chose est faite de deux façons différentes → signaler l'incohérence
+- Claude propose d'ajouter une dépendance → toujours demander pourquoi
+
+---
+
+## 8. Itérer vite, supprimer agressivement
+
+L'AI rend trivial d'ajouter des features. Le vrai skill est de savoir quoi enlever.
+Chaque feature inutile est du contexte en moins pour l'AI, de la complexité en plus.
+
+En pratique :
+- YAGNI : ne construire que ce qui est nécessaire aujourd'hui
+- Audit mensuel de la codebase : supprimer avant d'ajouter
+- Un produit simple qui marche > un produit complexe qui dérive
+
+---
+
+## 9. Le workflow est le produit
+
+Le système qu'on construit (Obsidian + Claude + Figma + GitHub) est lui-même
+un produit à maintenir, améliorer, et documenter.
+
+En pratique :
+- Studio-Workflow est un projet à part entière avec sa propre roadmap
+- Chaque friction dans le workflow → noter dans Studio-Workflow/Changelog.md
+- Les bonnes pratiques découvertes en travaillant → mettre à jour ce fichier
